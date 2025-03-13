@@ -14,19 +14,19 @@ def get_requirements(file_path: str) -> List[str]:
         requirements = [req.replace("\n", "") for req in requirements]     
         
         if HYPEN_E_DOT in requirements:
-            requirements.remove(HYPEN_E_DOT)        
-    return requirements  
+            requirements.remove(HYPEN_E_DOT)    
+    return requirements
 
 
 with open("README.md", "r", encoding="utf-8") as f:
     long_description = f.read()
 
 
-__version__= "0.0.0"
-REPO_NAME = "Chicken-Disease-Classification-Project"
-AUTHOR_USER_NAME = "chouaebou"
+__version__ = "0.0.0"
 SRC_REPO = "cnnClassifier"
+AUTHOR_USER_NAME = "chouaebou"
 AUTHOR_EMAIL = "imounchigam@gmail.com"
+REPO_NAME = "Chicken-Disease-Classification-Project"
 
 setup(
     name=SRC_REPO,
