@@ -19,9 +19,10 @@ try:
 except Exception as e:
     raise CustomException(e, sys)
 
-# Prepare base model
+# Prepare base model stage
 STAGE_NAME = "Prepare base model"
 try:
+    logging.info("***************************************")
     logging.info(f">>>>> stage {STAGE_NAME} started <<<<<")
     
     prepare_base_model = PrepareBaseModelTrainingPipeline()

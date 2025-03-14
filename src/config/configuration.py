@@ -1,8 +1,10 @@
+import os
 from pathlib import Path
 from src.constants import *
 from src.utils.common import fn_read_yaml, fn_create_directories, fn_get_size
 from src.entity.config_entity import (_DataIngestionConfig, 
-                                      _PrepareBaseModelConfig)
+                                      _PrepareBaseModelConfig,
+                                      _PrepareCallbacksConfig)
 
 
 class ConfigurationManager:
@@ -46,4 +48,18 @@ class ConfigurationManager:
             params_classes=self.params.CLASSES
         )
         
-        return prepare_base_model_config
+        return prepare_base_model_config        
+    
+    def fn_get_prepare_callback_config(self) -> _PrepareCallbacksConfig:
+        config = self.config.prepare_callbacks
+        model_ckpt_dir = os.path.dirname(config.checkpoint_model_filepath)
+        
+        fn_create_directories([Path(model_ckpt_dir), Path(config.tensorboard_root_log_dir)])
+        
+        prepare_callback_config = _PrepareCallbacksConfig(
+            root_dir=Path(config.root_dir),
+            tensorboard_root_log_dir=Path(config.tensorboard_root_log_dir),
+            checkpoint_model_filepath=Path(config.checkpoint_model_filepath)
+        )
+            
+        return prepare_callback_config
