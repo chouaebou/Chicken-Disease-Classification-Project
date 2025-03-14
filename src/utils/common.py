@@ -7,14 +7,14 @@ import base64
 from typing import Any
 from pathlib import Path
 from box import ConfigBox
+from ensure import ensure_annotations
 from src.logging.logger import logging
-# from ensure import ensure_annotations
 from box.exceptions import BoxValueError
 from src.exception.exception import CustomException
 
 
-# @ensure_annotations
-def create_directories(path_to_directories: list, verbose=True):
+@ensure_annotations
+def fn_create_directories(path_to_directories: list, verbose=True):
     """create list of directories
     Args:
         path_to_directories (list): list of path of directories
@@ -26,8 +26,8 @@ def create_directories(path_to_directories: list, verbose=True):
             logging.info(f"created directory at: {path}")
     
  
-# @ensure_annotations
-def save_json(path: Path, data: dict):
+@ensure_annotations
+def fn_save_json(path: Path, data: dict):
     """save json data
     Args:
         path (Path): path to json file
@@ -39,8 +39,8 @@ def save_json(path: Path, data: dict):
     logging.info(f"json file saved at: {path}")
     
     
-# @ensure_annotations
-def read_yaml(path_to_yaml: Path) -> ConfigBox:
+@ensure_annotations
+def fn_read_yaml(path_to_yaml: Path) -> ConfigBox:
     """reads yaml file and returns
     Args:
         path_to_yaml (Path): path like input
@@ -63,8 +63,8 @@ def read_yaml(path_to_yaml: Path) -> ConfigBox:
         raise CustomException(e, sys)
     
     
-# @ensure_annotations
-def load_json(path: Path) -> ConfigBox:
+@ensure_annotations
+def fn_load_json(path: Path) -> ConfigBox:
     """load json files data
     Args:
         path (Path): path to json file
@@ -75,11 +75,12 @@ def load_json(path: Path) -> ConfigBox:
         content = json.load(f)
         
     logging.info(f"json file loaded successfully from: {path}")
+    
     return ConfigBox(content)
 
 
-# @ensure_annotations
-def save_bin(data: Any, path: Path):
+@ensure_annotations
+def fn_save_bin(data: Any, path: Path):
     """save binary file
 
     Args:
@@ -90,8 +91,8 @@ def save_bin(data: Any, path: Path):
     logging.info(f"binary file saved at: {path}")
     
 
-# @ensure_annotations
-def load_bin(path: Path) -> Any:
+@ensure_annotations
+def fn_load_bin(path: Path) -> Any:
     """load binary data
 
     Args:
@@ -106,8 +107,8 @@ def load_bin(path: Path) -> Any:
     return data
 
 
-# @ensure_annotations
-def get_size(path: Path) -> str:
+@ensure_annotations
+def fn_get_size(path: Path) -> str:
     """get size in kb
 
     Args:
@@ -130,4 +131,5 @@ def decodeImage(imgstring, filename):
         
 def encodeImageIntoBase64(croppedImagePath):
     with open(croppedImagePath, "rb") as f:
+        
         return base64.b64encode(f.read())
