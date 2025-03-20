@@ -33,3 +33,5 @@ git add .
 git commit -m "Data Transformation done"
 git status
 git push -u origin main
+
+tensorboard --logdir artifacts/prepare_callbacks/tensorboard_log_dir/

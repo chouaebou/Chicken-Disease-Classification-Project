@@ -21,13 +21,13 @@ class PrepareBaseModelTrainingPipeline:
         prepare_base_model.fn_update_base_model()
         
         
-# if __name__ == '__main__':
-#     try:
-#         logging.info(f">>>>> stage {STAGE_NAME} started <<<<<")
+if __name__ == '__main__':
+    try:
+        logging.info(f">>>>> stage {STAGE_NAME} started <<<<<")
         
-#         object = PrepareBaseModelTrainingPipeline()
-#         object.main()
+        object = PrepareBaseModelTrainingPipeline()
+        object.main()
         
-#         logging.info(f">>>>> stage {STAGE_NAME} completed <<<<<\n\nx======")
-#     except Exception as e:
-#         raise CustomException(e, sys)
+        logging.info(f">>>>> stage {STAGE_NAME} completed <<<<<\n\nx======")
+    except Exception as e:
+        raise CustomException(e, sys)
