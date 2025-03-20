@@ -57,11 +57,11 @@ class Training:
         )
 
     @staticmethod
-    def save_model(path: Path, model: tf.keras.Model):
+    def fn_save_model(path: Path, model: tf.keras.Model):
         model.save(path)
         # model.converters.save_keras_model(path)
         
-    def train(self, callback_list: list):
+    def fn_train(self, callback_list: list):
         self.steps_per_epoch = self.train_generator.samples // self.train_generator.batch_size
         self.validation_steps = self.valid_generator.samples // self.valid_generator.batch_size
         
@@ -74,7 +74,7 @@ class Training:
             callbacks=callback_list
         )
         
-        self.save_model(
+        self.fn_save_model(
             path=self.config.trained_model_path,
             model=self.model
         )

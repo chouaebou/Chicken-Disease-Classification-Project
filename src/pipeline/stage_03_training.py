@@ -1,12 +1,10 @@
+import sys
 from src.logging.logger import logging
 from src.components.training import Training
 from src.exception.exception import CustomException
 from config.configuration import ConfigurationManager
 from src.components.prepare_callbacks import PrepareCallback
 from src.components.prepare_base_model import PrepareBaseModel
-
-
-STAGE_NAME = "Training stage"
 
 
 class ModelTrainingPipeline:
@@ -23,18 +21,20 @@ class ModelTrainingPipeline:
         training = Training(config=training_config)
         training.fn_get_base_model()
         training.fn_train_valid_generator()
-        training.train(
+        training.fn_train(
             callback_list=callback_list
         )
             
 
-# if __name__ == '__main__':
-#     try:
-#         logging.info(f">>>>> stage {STAGE_NAME} started <<<<<")
+STAGE_NAME = "Training stage"
+
+if __name__ == '__main__':
+    try:
+        logging.info(f">>>>> stage {STAGE_NAME} started <<<<<")
         
-#         object = TrainingPipeline()
-#         object.main()
+        object = ModelTrainingPipeline()
+        object.main()
         
-#         logging.info(f">>>>> stage {STAGE_NAME} completed <<<<<\n\nx======")
-#     except Exception as e:
-#         raise CustomException(e, sys)
+        logging.info(f">>>>> stage {STAGE_NAME} completed <<<<<\n\nx======")
+    except Exception as e:
+        raise CustomException(e, sys)

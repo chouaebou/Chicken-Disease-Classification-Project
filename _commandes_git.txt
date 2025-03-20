@@ -18,14 +18,16 @@ git push -u origin main
 # others
 git config --global user.email
 
-# Commandes conda
+# Create the virtual environment with conda
 conda create -p venv python==3.12 -y
 
+# Activate virtual environment
 conda activate venv/
 
+# Desactivate virtual environment
 conda deactivate
 
-# install packages in requirements.txt
+# Install packages in requirements.txt
 pip install -r requirements.txt
 
 # update the new code after modification
@@ -35,3 +37,13 @@ git status
 git push -u origin main
 
 tensorboard --logdir artifacts/prepare_callbacks/tensorboard_log_dir/
+
+# How to deploy code in dvc command line 
+dvc init
+
+# Running code with dvc
+dvc repro
+
+# See graphics process
+dvc dag 
+
